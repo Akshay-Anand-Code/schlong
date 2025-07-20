@@ -246,10 +246,32 @@
         }
 
         .contract-title {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: bold;
             color: #333;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .contract-subtitle {
+            font-size: 12px;
+            font-weight: normal;
+            color: #666;
             margin-bottom: 8px;
+            text-align: center;
+        }
+
+        /* JUST SHLONGING Text */
+        .just-shlonging {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 20;
             text-align: center;
         }
 
@@ -327,6 +349,9 @@
     <div class="character">
         <img src="pengu.gif" alt="Walking Character" onerror="this.style.display='none'">
     </div>
+    
+    <!-- JUST SHLONGING Text -->
+    <div class="just-shlonging">JUST SHLONGING</div>
     
     <!-- Contract Address Section -->
     <div class="contract-section">
