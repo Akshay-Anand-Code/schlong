@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>character</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+
+        /* Sky background */
+        .sky {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: #87CEEB;
+        }
+
+        /* Ground */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: #90EE90;
+        }
+
+        /* Title */
+        .title {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        /* Road container */
+        .road-container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            transform: translateY(-50%);
+        }
+
+        /* Road */
+        .road {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            background: #404040;
+            border-top: 3px solid #333;
+            border-bottom: 3px solid #333;
+        }
+
+        /* Road lines */
+        .road-lines {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 8px;
+            background: repeating-linear-gradient(
+                to right,
+                transparent 0px,
+                transparent 30px,
+                white 30px,
+                white 60px
+            );
+            animation: roadMove 2s linear infinite;
+        }
+
+        @keyframes roadMove {
+            0% { transform: translateY(-50%) translateX(0); }
+            100% { transform: translateY(-50%) translateX(60px); }
+        }
+
+        /* Clouds */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.9;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 15%;
+            animation: cloudMove1 20s linear infinite;
+        }
+
+        .cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 60px;
+            height: 35px;
+            top: -15px;
+            right: 15px;
+        }
+
+        .cloud2 {
+            width: 120px;
+            height: 50px;
+            top: 25%;
+            animation: cloudMove2 25s linear infinite;
+            animation-delay: -5s;
+        }
+
+        .cloud2::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 15px;
+        }
+
+        .cloud2::after {
+            width: 70px;
+            height: 40px;
+            top: -20px;
+            right: 20px;
+        }
+
+        .cloud3 {
+            width: 80px;
+            height: 35px;
+            top: 10%;
+            animation: cloudMove3 18s linear infinite;
+            animation-delay: -10s;
+        }
+
+        .cloud3::before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 8px;
+        }
+
+        .cloud3::after {
+            width: 50px;
+            height: 30px;
+            top: -12px;
+            right: 12px;
+        }
+
+        @keyframes cloudMove1 {
+            0% { left: -150px; }
+            100% { left: 100%; }
+        }
+
+        @keyframes cloudMove2 {
+            0% { left: -180px; }
+            100% { left: 100%; }
+        }
+
+        @keyframes cloudMove3 {
+            0% { left: -120px; }
+            100% { left: 100%; }
+        }
+
+        /* Character GIF */
+        .character {
+            position: absolute;
+            top: 50%;
+            /* Remove left: 30%; */
+            left: -150px; /* Start off-screen to the left */
+            transform: translateY(-50%);
+            width: 140px;
+            height: 140px;
+            z-index: 15;
+            animation: characterWalk 0.6s ease-in-out infinite alternate,
+                       characterMove 8s linear infinite; /* Add movement animation */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 1.5px 4px rgba(0,0,0,0.12);
+            border-radius: 20px;
+            background: rgba(255,255,255,0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .character:hover {
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.16);
+        }
+
+        .character img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes characterWalk {
+            0% { transform: translateY(-50%) translateY(0px); }
+            100% { transform: translateY(-50%) translateY(-2px); }
+        }
+
+        @keyframes characterMove {
+            0% {
+                left: -150px; /* Off-screen left */
+            }
+            100% {
+                left: 100vw; /* Off-screen right */
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="sky"></div>
+    <div class="ground"></div>
+    
+    <div class="title">character</div>
+    
+    <!-- Clouds -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    
+    <!-- Road -->
+    <div class="road-container">
+        <div class="road">
+            <div class="road-lines"></div>
+        </div>
+    </div>
+    
+    <!-- Character GIF - Replace 'your-character.gif' with your actual GIF file -->
+    <div class="character">
+        <img src="pengu.gif" alt="Walking Character" onerror="this.style.display='none'">
+    </div>
+    
+    <!-- Close button -->
+    <!-- Status text -->
+</body>
+</html>
